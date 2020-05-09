@@ -7,5 +7,8 @@
     <string name="david_prismantas">Prismantas, David</string>
     <string name="submit">Submit</string>
     <string name="_4_28_2020">4/28/2020</string>
-    <string name="thank_you">Thank You!</string>
+    <string name="thank_you">Thanks for signing up, </string>
+    <string name="back_button">Back</string>
+    <string name="sorry_you_re_not_old_enough">Sorry, you\'re not old enough.</string>
+    <string name="nothing" />
 </resources>

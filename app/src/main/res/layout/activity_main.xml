@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/LinearLayout_1"
@@ -22,8 +26,8 @@
             android:text="@string/name"
             android:layout_below="@id/LinearLayout_1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/tv_1_marginTop"
+            android:layout_marginStart="@dimen/tv_1_marginStart"
             />
 
         <EditText
@@ -32,7 +36,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_below="@+id/text_view_1"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="@dimen/input_1_marginStart"
             android:inputType="textPersonName"
             />
 
@@ -43,8 +47,8 @@
             android:text="@string/email_address"
             android:layout_below="@+id/input_field_1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/tv_2_marginTop"
+            android:layout_marginStart="@dimen/tv_2_marginStart"
             />
 
         <EditText
@@ -53,7 +57,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_below="@+id/text_view_2"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="@dimen/input_1_marginStart"
             android:inputType="textEmailAddress"
             />
 
@@ -64,8 +68,8 @@
             android:text="@string/username"
             android:layout_below="@+id/input_field_2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/tv_3_marginTop"
+            android:layout_marginStart="@dimen/tv_3_marginStart"
             />
 
         <EditText
@@ -74,29 +78,19 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_below="@+id/text_view_3"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="@dimen/input_3_marginStart"
             android:inputType="textPersonName"
             />
 
-        <TextView
+        <Button
             android:id="@+id/text_view_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/date_of_birth"
             android:layout_below="@+id/input_field_3"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
-            />
-
-        <EditText
-            android:id="@+id/input_field_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_below="@+id/text_view_4"
-            android:layout_marginLeft="50dp"
-            android:inputType="date"
+            android:layout_marginTop="@dimen/tv_4_marginTop"
+            android:layout_marginStart="@dimen/tv_4_marginStart"
             />
 
         <Button
@@ -104,11 +98,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/submit"
-            android:layout_below="@+id/input_field_4"
+            android:layout_below="@+id/text_view_4"
             android:layout_centerHorizontal="false"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/button_1_marginTop"
+            android:layout_marginStart="@dimen/button_1_marginStart"
             android:onClick="goToThankYouActivity"
+            />
+
+        <TextView
+            android:id="@+id/text_view_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nothing"
+            android:layout_marginTop="@dimen/tv_8_marginTop"
             />
 
         <TextView
@@ -117,8 +119,8 @@
             android:layout_height="wrap_content"
             android:text="@string/david_prismantas"
             android:layout_below="@+id/button_1"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/tv_5_marginTop"
+            android:layout_marginStart="@dimen/tv_5_marginStart"
             />
 
         <TextView
@@ -127,11 +129,11 @@
             android:layout_height="wrap_content"
             android:text="@string/_4_28_2020"
             android:layout_below="@+id/text_view_5"
-            android:layout_marginTop="21dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/tv_6_marginTop"
+            android:layout_marginStart="@dimen/tv_6_marginStart"
             />
     </LinearLayout>
 
-
-
 </RelativeLayout>
+</ScrollView>
+
