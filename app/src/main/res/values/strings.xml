@@ -11,4 +11,6 @@
     <string name="back_button">Back</string>
     <string name="sorry_you_re_not_old_enough">Sorry, you\'re not old enough.</string>
     <string name="nothing" />
+    <string name="occupation">Occupation:</string>
+    <string name="self_description">Describe yourself (max. 80 char)</string>
 </resources>

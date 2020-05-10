@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThankYou">
-
-    <TextView
-        android:id="@+id/text_view_7"
-        android:layout_width="wrap_content"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/thank_you"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/tv_7_marginTop"
-        android:layout_marginStart="@dimen/tv_7_marginStart"
+        tools:context=".ThankYou">
+
+        <TextView
+            android:id="@+id/text_view_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thank_you"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/tv_7_marginTop"
+            android:layout_marginStart="@dimen/tv_7_marginStart"
+            android:background="@color/colorAccent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
         />
 
-
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

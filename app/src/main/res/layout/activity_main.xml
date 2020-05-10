@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <RelativeLayout
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-    <LinearLayout
-        android:id="@+id/LinearLayout_1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/top_margin"
-        android:orientation="vertical">
+        tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/text_view_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name"
-            android:layout_below="@id/LinearLayout_1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/tv_1_marginTop"
             android:layout_marginStart="@dimen/tv_1_marginStart"
+            app:layout_constraintTop_toTopOf="parent"
             />
 
         <EditText
@@ -35,9 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:layout_below="@+id/text_view_1"
             android:layout_marginStart="@dimen/input_1_marginStart"
             android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@id/text_view_1"
+            app:layout_constraintStart_toStartOf="@id/text_view_1"
             />
 
         <TextView
@@ -45,10 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/email_address"
-            android:layout_below="@+id/input_field_1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/tv_2_marginTop"
             android:layout_marginStart="@dimen/tv_2_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/input_field_1"
             />
 
         <EditText
@@ -56,9 +47,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:layout_below="@+id/text_view_2"
-            android:layout_marginStart="@dimen/input_1_marginStart"
+            android:layout_marginStart="@dimen/input_2_marginStart"
             android:inputType="textEmailAddress"
+            app:layout_constraintTop_toBottomOf="@id/text_view_2"
+            app:layout_constraintStart_toStartOf="@id/text_view_2"
             />
 
         <TextView
@@ -66,10 +58,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/username"
-            android:layout_below="@+id/input_field_2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/tv_3_marginTop"
             android:layout_marginStart="@dimen/tv_3_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/input_field_2"
             />
 
         <EditText
@@ -77,20 +69,69 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:layout_below="@+id/text_view_3"
             android:layout_marginStart="@dimen/input_3_marginStart"
             android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@id/text_view_3"
+            app:layout_constraintStart_toStartOf="@id/text_view_3"
+            />
+
+        <TextView
+            android:id="@+id/text_view_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/occupation"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/tv_9_marginTop"
+            android:layout_marginStart="@dimen/tv_9_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/input_field_3"
+            />
+
+        <EditText
+            android:id="@+id/input_field_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginStart="@dimen/input_3_marginStart"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@id/text_view_9"
+            app:layout_constraintStart_toStartOf="@id/text_view_9"
+            />
+
+        <TextView
+            android:id="@+id/text_view_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/self_description"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/tv_3_marginTop"
+            android:layout_marginStart="@dimen/tv_3_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/input_field_4"
+            />
+
+        <EditText
+            android:id="@+id/input_field_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_below="@+id/text_view_3"
+            android:layout_marginStart="@dimen/input_3_marginStart"
+            android:inputType="textMultiLine"
+            android:maxLength="80"
+            app:layout_constraintTop_toBottomOf="@id/text_view_10"
+            app:layout_constraintStart_toStartOf="@id/text_view_10"
             />
 
         <Button
             android:id="@+id/text_view_4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date_of_birth"
             android:layout_below="@+id/input_field_3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/tv_4_marginTop"
             android:layout_marginStart="@dimen/tv_4_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/input_field_5"
+            app:layout_constraintStart_toStartOf="@id/input_field_3"
             />
 
         <Button
@@ -103,6 +144,8 @@
             android:layout_marginTop="@dimen/button_1_marginTop"
             android:layout_marginStart="@dimen/button_1_marginStart"
             android:onClick="goToThankYouActivity"
+            app:layout_constraintTop_toBottomOf="@id/text_view_4"
+            app:layout_constraintStart_toStartOf="@id/text_view_4"
             />
 
         <TextView
@@ -111,6 +154,8 @@
             android:layout_height="wrap_content"
             android:text="@string/nothing"
             android:layout_marginTop="@dimen/tv_8_marginTop"
+            app:layout_constraintTop_toBottomOf="@id/button_1"
+            app:layout_constraintStart_toStartOf="@id/button_1"
             />
 
         <TextView
@@ -121,6 +166,8 @@
             android:layout_below="@+id/button_1"
             android:layout_marginTop="@dimen/tv_5_marginTop"
             android:layout_marginStart="@dimen/tv_5_marginStart"
+            app:layout_constraintTop_toBottomOf="@id/text_view_8"
+            app:layout_constraintStart_toStartOf="@id/text_view_8"
             />
 
         <TextView
@@ -131,9 +178,10 @@
             android:layout_below="@+id/text_view_5"
             android:layout_marginTop="@dimen/tv_6_marginTop"
             android:layout_marginStart="@dimen/tv_6_marginStart"
+            android:layout_marginBottom="@dimen/tv_6_marginBottom"
+            app:layout_constraintTop_toBottomOf="@id/text_view_5"
+            app:layout_constraintStart_toStartOf="@id/text_view_5"
             />
-    </LinearLayout>
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-

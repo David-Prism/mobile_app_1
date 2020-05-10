@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="top_margin">122dp</dimen>
-    <dimen name="tv_7_marginTop">100dp</dimen>
-    <dimen name="tv_7_marginStart">100dp</dimen>
-    <dimen name="tv_1_marginTop">21dp</dimen>
-    <dimen name="tv_1_marginStart">100dp</dimen>
-    <dimen name="tv_2_marginTop">21dp</dimen>
-    <dimen name="tv_2_marginStart">100dp</dimen>
-    <dimen name="input_1_marginStart">50dp</dimen>
-    <dimen name="tv_3_marginTop">21dp</dimen>
-    <dimen name="tv_3_marginStart">100dp</dimen>
-    <dimen name="input_3_marginStart">50dp</dimen>
-    <dimen name="tv_4_marginTop">21dp</dimen>
-    <dimen name="tv_4_marginStart">50dp</dimen>
+    <dimen name="tv_7_marginTop">50dp</dimen>
+    <dimen name="tv_7_marginStart">50dp</dimen>
+    <dimen name="tv_1_marginTop">50dp</dimen>
+    <dimen name="tv_1_marginStart">50dp</dimen>
+    <dimen name="tv_2_marginTop">50dp</dimen>
+    <dimen name="tv_2_marginStart">50dp</dimen>
+    <dimen name="input_1_marginStart">0dp</dimen>
+    <dimen name="tv_3_marginTop">50dp</dimen>
+    <dimen name="tv_3_marginStart">50dp</dimen>
+    <dimen name="input_3_marginStart">0dp</dimen>
+    <dimen name="tv_4_marginTop">50dp</dimen>
+    <dimen name="tv_4_marginStart">0dp</dimen>
     <dimen name="button_1_marginTop">21dp</dimen>
-    <dimen name="button_1_marginStart">100dp</dimen>
+    <dimen name="button_1_marginStart">0dp</dimen>
     <dimen name="tv_8_marginTop">10dp</dimen>
     <dimen name="tv_5_marginTop">51dp</dimen>
-    <dimen name="tv_5_marginStart">100dp</dimen>
+    <dimen name="tv_5_marginStart">0dp</dimen>
     <dimen name="tv_6_marginTop">21dp</dimen>
-    <dimen name="tv_6_marginStart">100dp</dimen>
+    <dimen name="tv_6_marginStart">0dp</dimen>
+    <dimen name="input_2_marginStart">0dp</dimen>
+    <dimen name="tv_9_marginTop">50dp</dimen>
+    <dimen name="tv_9_marginStart">50dp</dimen>
+    <dimen name="tv_6_marginBottom">50dp</dimen>
 </resources>
