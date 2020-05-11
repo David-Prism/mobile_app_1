@@ -13,4 +13,7 @@
     <string name="nothing" />
     <string name="occupation">Occupation:</string>
     <string name="self_description">Describe yourself (max. 80 char)</string>
+    <string name="a_picture_of_kermit">A picture of Kermit</string>
+    <string name="placeholder">placeholder</string>
+    <string name="placeholder2">placeholder2</string>
 </resources>

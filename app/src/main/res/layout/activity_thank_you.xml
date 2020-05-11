@@ -21,8 +21,34 @@
             android:layout_marginStart="@dimen/tv_7_marginStart"
             android:background="@color/colorAccent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-        />
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/image_view_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_view_7"
+            app:layout_constraintTop_toBottomOf="@id/text_view_7"
+            android:contentDescription="@string/a_picture_of_kermit"
+            android:src="@drawable/kermit4" />
+
+        <TextView
+            android:id="@+id/text_view_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder"
+            android:paddingBottom="@dimen/tv_11_bottom_padding"
+            app:layout_constraintTop_toBottomOf="@id/image_view_1"
+            app:layout_constraintStart_toStartOf="@id/image_view_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_view_12"
+            android:text="@string/placeholder2"
+            app:layout_constraintTop_toBottomOf="@id/text_view_11"
+            app:layout_constraintStart_toStartOf="@id/text_view_11"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

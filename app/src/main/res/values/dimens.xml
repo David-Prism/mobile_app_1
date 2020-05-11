@@ -24,4 +24,5 @@
     <dimen name="tv_9_marginTop">50dp</dimen>
     <dimen name="tv_9_marginStart">50dp</dimen>
     <dimen name="tv_6_marginBottom">50dp</dimen>
+    <dimen name="tv_11_bottom_padding">20dp</dimen>
 </resources>

@@ -10,7 +10,9 @@ import com.example.helloworld.R;
 
 public class ThankYou extends AppCompatActivity {
 
-    TextView textView;
+    TextView textView7;
+    TextView textView11;
+    TextView textView12;
 
     private static final String TAG = ThankYou.class.getSimpleName();
 
@@ -18,12 +20,12 @@ public class ThankYou extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thank_you);
-        textView = findViewById(R.id.text_view_7);
+        textView7 = findViewById(R.id.text_view_7);
 
-        StringBuilder message = new StringBuilder("Thanks for signing up, ");
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
 
+        StringBuilder message = new StringBuilder("");
         String name = "";
 
         if (b != null) {
@@ -33,7 +35,20 @@ public class ThankYou extends AppCompatActivity {
         }
 
         message.append(name).append("!");
+        textView7.setText(message);
 
-        textView.setText(message);
+        String occupation = "";
+        if(b != null) {
+            if(b.containsKey(Constants.KEY_OCCUPATION)) {
+                occupation = b.getString(Constants.KEY_OCCUPATION);
+            }
+        }
+
+        String description = "";
+        if(b != null) {
+            if(b.containsKey(Constants.KEY_SELF_DESCRIPTION)) {
+                description = b.getString(Constants.KEY_SELF_DESCRIPTION);
+            }
+        }
     }
 }

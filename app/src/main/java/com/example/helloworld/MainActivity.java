@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText inputUserName;
     private Button inputDate;
     private TextView error;
+    private EditText inputOccupation;
+    private EditText inputSelfDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         inputUserName = findViewById(R.id.input_field_3);
         inputDate = findViewById(R.id.text_view_4);
         error = findViewById(R.id.text_view_8);
+        inputOccupation = findViewById(R.id.input_field_4);
+        inputSelfDescription = findViewById(R.id.input_field_5);
 
         inputDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString(Constants.KEY_EMAIL, inputEmail.getText().toString());
             bundle.putString(Constants.KEY_USERNAME, inputUserName.getText().toString());
             bundle.putString(Constants.KEY_DATE, inputDate.getText().toString());
+            bundle.putString(Constants.KEY_OCCUPATION, inputOccupation.getText().toString());
+            bundle.putString(Constants.KEY_SELF_DESCRIPTION, inputSelfDescription.getText().toString());
             thankYouActivity.putExtras(bundle);
             startActivity(thankYouActivity);
         } else {
