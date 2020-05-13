@@ -9,4 +9,5 @@ public class Constants {
     static final String KEY_BIRTHDATE_BUTTON = "Date of Birth";
     static final String KEY_OCCUPATION = "Occupation";
     static final String KEY_SELF_DESCRIPTION = "Self description";
+    static final String KEY_AGE = "age";
 }

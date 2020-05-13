@@ -25,4 +25,9 @@
     <dimen name="tv_9_marginStart">50dp</dimen>
     <dimen name="tv_6_marginBottom">50dp</dimen>
     <dimen name="tv_11_bottom_padding">20dp</dimen>
+    <dimen name="tv_7_paddingBottom">20dp</dimen>
+    <dimen name="tv_13_paddingTop">20dp</dimen>
+    <dimen name="tv_13_paddingBottom">20dp</dimen>
+    <dimen name="tv_12_width">320dp</dimen>
+    <dimen name="fragment_layout_padding">0dp</dimen>
 </resources>

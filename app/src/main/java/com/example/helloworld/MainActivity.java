@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView error;
     private EditText inputOccupation;
     private EditText inputSelfDescription;
+    private String age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     bDay.append(month);
                 }
-                bDay.append("-").append(dayOfMonth);
+                bDay.append("-");
+                if(dayOfMonth <= 9) {
+                    bDay.append(0).append(dayOfMonth);
+                } else {
+                    bDay.append(dayOfMonth);
+                }
+
 
                 Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
             }
@@ -109,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
         inputUserName.setText("");
         inputDate.setText(R.string.date_of_birth);
         bDay.setLength(0);
+        inputOccupation.setText("");
+        inputSelfDescription.setText("");
     }
 
     @Override
@@ -161,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         Period p = Period.between(dob, today);
         int numYears = p.getYears();
+        age = Integer.toString(numYears);
 
         return numYears >= 18;
     }
@@ -175,10 +185,11 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString(Constants.KEY_DATE, inputDate.getText().toString());
             bundle.putString(Constants.KEY_OCCUPATION, inputOccupation.getText().toString());
             bundle.putString(Constants.KEY_SELF_DESCRIPTION, inputSelfDescription.getText().toString());
+            bundle.putString(Constants.KEY_AGE, age);
             thankYouActivity.putExtras(bundle);
             startActivity(thankYouActivity);
         } else {
-            error.setText("Sorry, you're too young.");
+            error.setText(R.string.sorry_too_young);
         }
     }
 }

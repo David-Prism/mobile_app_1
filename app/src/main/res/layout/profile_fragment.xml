@@ -1,0 +1,64 @@
+ <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/profile_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ThankYou">
+
+            <TextView
+                android:id="@+id/text_view_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/thank_you"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/tv_7_marginTop"
+                android:layout_marginStart="@dimen/tv_7_marginStart"
+                android:paddingBottom="@dimen/tv_7_paddingBottom"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/image_view_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/text_view_7"
+                app:layout_constraintTop_toBottomOf="@id/text_view_7"
+                android:contentDescription="@string/a_picture_of_kermit"
+                android:src="@drawable/kermit4" />
+
+            <TextView
+                android:id="@+id/text_view_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placholder3"
+                android:paddingTop="@dimen/tv_13_paddingTop"
+                android:paddingBottom="@dimen/tv_13_paddingBottom"
+                app:layout_constraintTop_toBottomOf="@id/image_view_1"
+                app:layout_constraintStart_toStartOf="@id/image_view_1" />
+
+            <TextView
+                android:id="@+id/text_view_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder"
+                android:paddingBottom="@dimen/tv_11_bottom_padding"
+                app:layout_constraintTop_toBottomOf="@id/text_view_13"
+                app:layout_constraintStart_toStartOf="@id/text_view_13" />
+
+            <TextView
+                android:id="@+id/text_view_12"
+                android:layout_width="@dimen/tv_12_width"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder2"
+                app:layout_constraintTop_toBottomOf="@id/text_view_11"
+                app:layout_constraintStart_toStartOf="@id/text_view_11"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

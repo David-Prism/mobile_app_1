@@ -29,7 +29,7 @@
             android:inputType="textPersonName"
             app:layout_constraintTop_toBottomOf="@id/text_view_1"
             app:layout_constraintStart_toStartOf="@id/text_view_1"
-            />
+             />
 
         <TextView
             android:id="@+id/text_view_2"
@@ -116,7 +116,7 @@
             android:layout_below="@+id/text_view_3"
             android:layout_marginStart="@dimen/input_3_marginStart"
             android:inputType="textMultiLine"
-            android:maxLength="80"
+            android:maxLength="400"
             app:layout_constraintTop_toBottomOf="@id/text_view_10"
             app:layout_constraintStart_toStartOf="@id/text_view_10"
             />
