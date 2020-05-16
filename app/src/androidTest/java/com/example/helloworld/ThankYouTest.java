@@ -34,9 +34,9 @@ public class ThankYouTest {
         }
     };
 
-    @Test
-    public void setsRightMessageBasedOnIntentExtra() {
-        onView(withId(R.id.text_view_7))
-                .check(matches(withText("David1")));
-    }
+//    @Test
+//    public void setsRightMessageBasedOnIntentExtra() {
+//        onView(withId(R.id.text_view_7))
+//                .check(matches(withText("David1")));
+//    }
 }

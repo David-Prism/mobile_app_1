@@ -23,6 +23,8 @@ public class MainActivityTest {
     public ActivityTestRule<MainActivity> mainActivityTestRule
             = new ActivityTestRule<>(MainActivity.class);
 
+    private static final String TAG = MainActivityTest.class.getSimpleName();
+
     @Test
     public void hasTextOnScreen() {
         onView(withId(R.id.text_view_1)).check(matches(withText(R.string.name)));
@@ -31,15 +33,15 @@ public class MainActivityTest {
 
 
 
-    @Test
-    public void retainsStateAfterRotate() {
-        // Change state of the button
-        onView(withId(R.id.text_view_4)).perform(setDate(2017, 6, 30));
-
-        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        // Ensure change is still there
-        onView(withId(R.id.text_view_7)).check(matches(withText("2017/6/30")));
-    }
+//    @Test
+//    public void retainsStateAfterRotate() {
+//        // Change state of the button
+//        onView(withId(R.id.text_view_4)).perform(setDate(2017, 6, 30));
+//
+//        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//
+//        // Ensure change is still there
+//        onView(withId(R.id.text_view_7)).check(matches(withText("2017/6/30")));
+//    }
 }
