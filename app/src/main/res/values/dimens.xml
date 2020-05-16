@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="top_margin">122dp</dimen>
-    <dimen name="tv_7_marginTop">50dp</dimen>
+    <dimen name="tv_7_marginTop">150dp</dimen>
     <dimen name="tv_7_marginStart">50dp</dimen>
     <dimen name="tv_1_marginTop">50dp</dimen>
     <dimen name="tv_1_marginStart">50dp</dimen>
