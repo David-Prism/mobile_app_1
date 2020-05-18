@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         inputName = findViewById(R.id.input_field_1);
         inputEmail = findViewById(R.id.input_field_2);
         inputUserName = findViewById(R.id.input_field_3);
-        inputDate = findViewById(R.id.text_view_4);
+        inputDate = findViewById(R.id.button_date);
         error = findViewById(R.id.text_view_8);
         inputOccupation = findViewById(R.id.input_field_4);
         inputSelfDescription = findViewById(R.id.input_field_5);

@@ -29,7 +29,7 @@ public class ThankYouTest {
             testIntent.putExtra(Constants.KEY_EMAIL, "david@gmail.com");
             testIntent.putExtra(Constants.KEY_USERNAME, "David1");
             testIntent.putExtra(Constants.KEY_DATE, "2020-04-17");
-//            onView(withId(R.id.text_view_4)).perform(setDate(1985, 6, 30));
+//            onView(withId(R.id.button_date)).perform(setDate(1985, 6, 30));
             return testIntent;
         }
     };

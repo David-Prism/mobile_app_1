@@ -7,6 +7,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
+
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -32,16 +35,18 @@ public class MainActivityTest {
 
 
 
-
 //    @Test
 //    public void retainsStateAfterRotate() {
 //        // Change state of the button
-//        onView(withId(R.id.text_view_4)).perform(setDate(2017, 6, 30));
+//        onView(withId(R.id.button_date)).perform(setDate(2017, 6, 30));
 //
-//        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//        // Ensure that the change happened
+//        onView(withId(R.id.button_date)).check(matches(withText("2017/06/30")));
+//
+//        // Rotate screen
+//        TestUtils.rotateScreen(mainActivityTestRule.getActivity());
 //
 //        // Ensure change is still there
-//        onView(withId(R.id.text_view_7)).check(matches(withText("2017/6/30")));
+//        onView(withId(R.id.button_date)).check(matches(withText("2017/06/30")));
 //    }
 }

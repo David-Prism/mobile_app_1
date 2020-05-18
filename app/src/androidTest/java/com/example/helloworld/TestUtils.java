@@ -20,6 +20,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 
 public class TestUtils {
+
     public static void rotateScreen(Activity activity) {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final int orientation = InstrumentationRegistry.getInstrumentation()
