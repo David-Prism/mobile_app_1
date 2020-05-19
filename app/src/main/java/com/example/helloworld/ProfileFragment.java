@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ProfileFragment extends Fragment {
 
@@ -17,7 +19,7 @@ public class ProfileFragment extends Fragment {
     private TextView textView12;
     private TextView textView13;
 
-    private static final String TAG = ThankYou.class.getSimpleName();
+    private static final String TAG = ProfileFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -71,5 +73,35 @@ public class ProfileFragment extends Fragment {
         textView12.setText(description);
 
         return view;
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.profile_fragment, parent, false));
+        }
+    }
+
+    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+        // Set numbers of List in RecyclerView.
+        private static final int LENGTH = 18;
+
+        public ContentAdapter() {
+        }
+
+        @NonNull
+        @Override
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()), parent);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+            // no-op
+        }
+
+        @Override
+        public int getItemCount() {
+            return LENGTH;
+        }
     }
 }

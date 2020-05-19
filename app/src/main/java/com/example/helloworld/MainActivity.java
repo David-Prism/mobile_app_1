@@ -62,8 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(MainActivity.this,
                         mDateSetListener, year, month, day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                if(dialog.getWindow() != null) {
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                }
 
                 dialog.show();
             }

@@ -30,4 +30,10 @@
     <dimen name="tv_13_paddingBottom">20dp</dimen>
     <dimen name="tv_12_width">320dp</dimen>
     <dimen name="fragment_layout_padding">0dp</dimen>
+    <dimen name="card_height">200dp</dimen>
+    <dimen name="card_title_height">40dp</dimen>
+    <dimen name="md_keylines">16dp</dimen>
+    <dimen name="description_text_size">16sp</dimen>
+    <dimen name="cards_button_width">48dp</dimen>
+    <dimen name="cards_button_height">48dp</dimen>
 </resources>

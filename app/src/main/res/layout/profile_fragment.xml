@@ -36,7 +36,7 @@
                 android:id="@+id/text_view_13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placholder3"
+                android:text="@string/placeholder3"
                 android:paddingTop="@dimen/tv_13_paddingTop"
                 android:paddingBottom="@dimen/tv_13_paddingBottom"
                 app:layout_constraintTop_toBottomOf="@id/image_view_1"
