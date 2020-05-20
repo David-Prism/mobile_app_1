@@ -33,8 +33,6 @@ public class MainActivityTest {
         onView(withId(R.id.text_view_1)).check(matches(withText(R.string.name)));
     }
 
-
-
 //    @Test
 //    public void retainsStateAfterRotate() {
 //        // Change state of the button
@@ -49,4 +47,7 @@ public class MainActivityTest {
 //        // Ensure change is still there
 //        onView(withId(R.id.button_date)).check(matches(withText("2017/06/30")));
 //    }
+
+
+
 }

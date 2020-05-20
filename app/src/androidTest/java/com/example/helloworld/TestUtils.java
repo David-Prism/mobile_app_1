@@ -3,6 +3,8 @@ package com.example.helloworld;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+
+import androidx.test.espresso.Espresso;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
@@ -15,6 +17,10 @@ import org.hamcrest.Matcher;
 
 import java.util.concurrent.CountDownLatch;
 
+
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
@@ -90,4 +96,10 @@ public class TestUtils {
             }
         };
     }
+
+//    public static void setDate(int datePickerLaunchViewId, int year, int monthOfYear, int dayOfMonth) {
+//        onView(withParent(withId(R.id.constraint_view_1)), withId(datePickerLaunchViewId)).perform(click());
+//        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, monthOfYear, dayOfMonth));
+//        onView(withId(android.R.id.button1)).perform(click());
+//    }
 }

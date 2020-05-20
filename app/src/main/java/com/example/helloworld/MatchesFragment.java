@@ -27,7 +27,8 @@ public class MatchesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view,
+                container, false);
 
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
@@ -43,7 +44,7 @@ public class MatchesFragment extends Fragment {
         public TextView name;
         public TextView description;
         public ImageButton likeButton;
-        public String likeMessage;
+//        public String likeMessage;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.matches_fragment, parent, false));
@@ -51,14 +52,17 @@ public class MatchesFragment extends Fragment {
             name = itemView.findViewById(R.id.card_title);
             description = itemView.findViewById(R.id.card_text);
             likeButton = itemView.findViewById(R.id.like_button);
-//            likeMessage = name.getText().toString();
 
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    String likeToast = "You liked ";
-                    likeToast = likeToast.concat(name.getText().toString());
+//                    String likeToast = itemView.getContext().getString(R.string.you_liked);
+//                    likeToast = likeToast.concat(" " + name.getText().toString());
+
+//                    Resources res = getResources();
+                    String likeToast = String.format(itemView.getContext().getString(R.string.you_liked),
+                            name.getText().toString());
 
                     Toast toast = Toast.makeText(v.getContext(), likeToast, Toast.LENGTH_SHORT);
                     toast.show();
@@ -80,12 +84,12 @@ public class MatchesFragment extends Fragment {
             mMatchDesc = new String[LENGTH];
             mPictures = new Drawable[LENGTH];
 
-            mNames[0] = "Shmoople";
-            mNames[1] = "Jessica";
-            mNames[2] = "Ignatius";
-            mMatchDesc[0] = "I hate my name.";
-            mMatchDesc[1] = "I love cats!";
-            mMatchDesc[2] = "This isn't where I parked my car!";
+            mNames[0] = context.getString(R.string.match_name1);
+            mNames[1] = context.getString(R.string.match_name2);
+            mNames[2] = context.getString(R.string.match_name3);
+            mMatchDesc[0] = context.getString(R.string.match_descrip1);
+            mMatchDesc[1] = context.getString(R.string.match_descrip2);
+            mMatchDesc[2] = context.getString(R.string.match_descrip3);
             mPictures[0] = context.getDrawable(R.drawable.fox_head);
             mPictures[1] = context.getDrawable(R.drawable.rhombicuboctohedron);
             mPictures[2] = context.getDrawable(R.drawable.small_axe);
