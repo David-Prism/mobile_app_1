@@ -30,4 +30,8 @@
     <string name="match_descrip1">I hate my name.</string>
     <string name="match_descrip2">I love cats!</string>
     <string name="match_descrip3">This isn\'t where I parked my car!</string>
+    <string name="empty_string" />
+    <string name="date_formatter_string">yyyy-MM-dd</string>
+    <string name="slash">/</string>
+    <string name="dash">-</string>
 </resources>

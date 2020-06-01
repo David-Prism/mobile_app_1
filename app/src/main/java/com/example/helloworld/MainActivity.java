@@ -3,6 +3,7 @@ package com.example.helloworld;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         inputDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inputDate.setText("");
+                inputDate.setText(getString(R.string.empty_string));
                 bDay.setLength(0);
                 Calendar cal = Calendar.getInstance();
                 int year = cal.get(Calendar.YEAR);
@@ -71,24 +72,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                inputDate.setText(year + "/" + month + "/" + dayOfMonth);
-                bDay.append(year).append("-");
+                StringBuilder theDate = new StringBuilder();
+                inputDate.setText(theDate.append(year).append(getString(R.string.slash))
+                        .append(month).append(getString(R.string.slash)).append(dayOfMonth).toString());
+                bDay.append(year).append(getString(R.string.dash));
                 if(month <= 9) {
                     bDay.append(0).append(month);
                 } else {
                     bDay.append(month);
                 }
-                bDay.append("-");
+                bDay.append(getString(R.string.dash));
                 if(dayOfMonth <= 9) {
                     bDay.append(0).append(dayOfMonth);
                 } else {
                     bDay.append(dayOfMonth);
                 }
-
-
-                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + dayOfMonth);
             }
         };
 
@@ -112,13 +113,13 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         Log.i(TAG, "onRestart()");
 
-        inputName.setText("");
-        inputEmail.setText("");
-        inputUserName.setText("");
+        inputName.setText(getString(R.string.empty_string));
+        inputEmail.setText(getString(R.string.empty_string));
+        inputUserName.setText(getString(R.string.empty_string));
         inputDate.setText(R.string.date_of_birth);
         bDay.setLength(0);
-        inputOccupation.setText("");
-        inputSelfDescription.setText("");
+        inputOccupation.setText(getString(R.string.empty_string));
+        inputSelfDescription.setText(getString(R.string.empty_string));
     }
 
     @Override
@@ -161,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
         LocalDate today = LocalDate.now();
         Log.i(TAG, bDay.toString());
         String str = bDay.toString();
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(getString(R.string.date_formatter_string));
         LocalDate dob;
-        if(!str.equals("")) {
+        if(!str.equals(getString(R.string.empty_string))) {
             dob = LocalDate.parse(str, dateTimeFormatter);
         } else {
             dob = LocalDate.now();

@@ -38,9 +38,9 @@ public class ThankYou extends AppCompatActivity {
         setContentView(R.layout.activity_thank_you);
 
         TabLayout tabs = findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("Profile"));
-        tabs.addTab(tabs.newTab().setText("Matches"));
-        tabs.addTab(tabs.newTab().setText("Settings"));
+        tabs.addTab(tabs.newTab().setText(R.string.profile));
+        tabs.addTab(tabs.newTab().setText(R.string.matches));
+        tabs.addTab(tabs.newTab().setText(R.string.settings));
 
         // Adds toolbar to ThankYou activity screen
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -57,9 +57,9 @@ public class ThankYou extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ProfileFragment(), "Profile");
-        adapter.addFragment(new MatchesFragment(), "Matches");
-        adapter.addFragment(new SettingsFragment(), "Settings");
+        adapter.addFragment(new ProfileFragment(), getString(R.string.profile));
+        adapter.addFragment(new MatchesFragment(), getString(R.string.matches));
+        adapter.addFragment(new SettingsFragment(), getString(R.string.settings));
         viewPager.setAdapter(adapter);
     }
 

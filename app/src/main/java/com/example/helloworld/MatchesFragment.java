@@ -12,10 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class MatchesFragment extends Fragment {
 
@@ -42,25 +46,21 @@ public class MatchesFragment extends Fragment {
 
         public ImageView picture;
         public TextView name;
-        public TextView description;
         public ImageButton likeButton;
-//        public String likeMessage;
+
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.matches_fragment, parent, false));
+
             picture = itemView.findViewById(R.id.card_image);
             name = itemView.findViewById(R.id.card_title);
-            description = itemView.findViewById(R.id.card_text);
+
             likeButton = itemView.findViewById(R.id.like_button);
 
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-//                    String likeToast = itemView.getContext().getString(R.string.you_liked);
-//                    likeToast = likeToast.concat(" " + name.getText().toString());
-
-//                    Resources res = getResources();
                     String likeToast = String.format(itemView.getContext().getString(R.string.you_liked),
                             name.getText().toString());
 
@@ -72,27 +72,43 @@ public class MatchesFragment extends Fragment {
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
-        // Set numbers of List in RecyclerView.
-        private static final int LENGTH = 3;
-        private final String[] mNames;
-        private final String[] mMatchDesc;
-        private final Drawable[] mPictures;
+
+        private int mLength;
+        private String[] mNames;
+        private String[] mPictures;
+        private String[] mUid;
+        private boolean[] mIsLiked;
+        private String[] mLat;
+        private String[] mLong;
+
         public ContentAdapter(Context context) {
             Resources resources = context.getResources();
 
-            mNames = new String[LENGTH];
-            mMatchDesc = new String[LENGTH];
-            mPictures = new Drawable[LENGTH];
+            MatchesViewModel viewModel = new MatchesViewModel();
 
-            mNames[0] = context.getString(R.string.match_name1);
-            mNames[1] = context.getString(R.string.match_name2);
-            mNames[2] = context.getString(R.string.match_name3);
-            mMatchDesc[0] = context.getString(R.string.match_descrip1);
-            mMatchDesc[1] = context.getString(R.string.match_descrip2);
-            mMatchDesc[2] = context.getString(R.string.match_descrip3);
-            mPictures[0] = context.getDrawable(R.drawable.fox_head);
-            mPictures[1] = context.getDrawable(R.drawable.rhombicuboctohedron);
-            mPictures[2] = context.getDrawable(R.drawable.small_axe);
+            viewModel.getMatches(
+                    (ArrayList<Match> matches) -> {
+                        int len = matches.size();
+
+                        mNames = new String[len];
+                        mPictures = new String[len];
+                        mUid = new String[len];
+                        mIsLiked = new boolean[len];
+                        mLat = new String[len];
+                        mLong = new String[len];
+                        mLength = matches.size();
+
+                        for(int i = 0; i < len; i++) {
+                            mNames[i] = matches.get(i).getName();
+                            mPictures[i] = matches.get(i).getImageUrl();
+                            mUid[i] = matches.get(i).getUid();
+                            mIsLiked[i] = matches.get(i).getIsLiked();
+                            mLat[i] = matches.get(i).getLat();
+                            mLong[i] = matches.get(i).getLongitude();
+                        }
+                        notifyDataSetChanged();
+                    }
+            );
         }
 
         @Override
@@ -102,14 +118,13 @@ public class MatchesFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.picture.setImageDrawable(mPictures[position % mPictures.length]);
             holder.name.setText(mNames[position % mNames.length]);
-            holder.description.setText(mMatchDesc[position % mMatchDesc.length]);
+            Picasso.get().load(mPictures[position % mPictures.length]).into(holder.picture);
         }
 
         @Override
         public int getItemCount() {
-            return LENGTH;
+            return mLength;
         }
     }
 }

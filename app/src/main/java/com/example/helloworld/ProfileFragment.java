@@ -36,8 +36,8 @@ public class ProfileFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         Bundle b = intent.getExtras();
 
-        StringBuilder message = new StringBuilder("");
-        String name = "";
+        StringBuilder message = new StringBuilder(getString(R.string.empty_string));
+        String name = getString(R.string.empty_string);
 
         if (b != null) {
             if (b.containsKey(Constants.KEY_USERNAME)) {
@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment {
         message.append(name);
         textView7.setText(message);
 
-        String age = "";
+        String age = getString(R.string.empty_string);
         if(b != null) {
             if(b.containsKey(Constants.KEY_AGE)) {
                 age = b.getString(Constants.KEY_AGE);
@@ -56,7 +56,7 @@ public class ProfileFragment extends Fragment {
         }
         textView13.setText(age);
 
-        String occupation = "";
+        String occupation = getString(R.string.empty_string);
         if(b != null) {
             if(b.containsKey(Constants.KEY_OCCUPATION)) {
                 occupation = b.getString(Constants.KEY_OCCUPATION);
@@ -64,7 +64,7 @@ public class ProfileFragment extends Fragment {
         }
         textView11.setText(occupation);
 
-        String description = "";
+        String description = getString(R.string.empty_string);
         if(b != null) {
             if(b.containsKey(Constants.KEY_SELF_DESCRIPTION)) {
                 description = b.getString(Constants.KEY_SELF_DESCRIPTION);
