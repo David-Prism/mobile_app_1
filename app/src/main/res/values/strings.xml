@@ -34,4 +34,9 @@
     <string name="date_formatter_string">yyyy-MM-dd</string>
     <string name="slash">/</string>
     <string name="dash">-</string>
+    <string name="daily_reminder_time">Daily Reminder Time:</string>
+    <string name="maximum_distance_for_matches_search">Maximum Distance for Matches Search:</string>
+    <string name="seeking_male_female_nonbinary">Seeking (Male/Female/Nonbinary):</string>
+    <string name="account_visibility_public_private">Account Visibility (public/private):</string>
+    <string name="age_range_desired">Age Range Desired:</string>
 </resources>
