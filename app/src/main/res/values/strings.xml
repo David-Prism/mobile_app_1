@@ -39,4 +39,6 @@
     <string name="seeking_male_female_nonbinary">Seeking (Male/Female/Nonbinary):</string>
     <string name="account_visibility_public_private">Account Visibility (public/private):</string>
     <string name="age_range_desired">Age Range Desired:</string>
+    <string name="save_settings">Save Settings</string>
+    <string name="none">none</string>
 </resources>
