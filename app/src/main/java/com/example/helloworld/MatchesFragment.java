@@ -49,8 +49,8 @@ public class MatchesFragment extends Fragment {
                 container, false);
 
         locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        longitudeValueNetwork = getView().findViewById(R.id.longitudeValueNetwork);
-        latitudeValueNetwork = getView().findViewById(R.id.latitudeValueNetwork);
+        longitudeValueNetwork = recyclerView.findViewById(R.id.longitudeValueNetwork);
+        latitudeValueNetwork = recyclerView.findViewById(R.id.latitudeValueNetwork);
 
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
