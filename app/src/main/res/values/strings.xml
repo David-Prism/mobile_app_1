@@ -49,4 +49,14 @@
     <string name="pause">Pause</string>
     <string name="network_provider_started_running">Network provider started running</string>
     <string name="network_provider_update">Network provider update</string>
+    <string name="settings_saved">Settings saved!</string>
+    <string name="sample_database">sample-database</string>
+    <string name="image_url">imageUrl</string>
+    <string name="lat">lat</string>
+    <string name="liked">liked</string>
+    <string name="longitude">longitude</string>
+    <string name="name_lower_case">name</string>
+    <string name="uid">uid</string>
+    <string name="percent_s">%s</string>
+    <string name="error_reading_matches">\"Error reading matches: \"</string>
 </resources>

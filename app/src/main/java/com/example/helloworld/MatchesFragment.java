@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -192,13 +193,14 @@ public class MatchesFragment extends Fragment {
     }
 
     private final LocationListener locationListenerNetwork = new LocationListener() {
+        @SuppressLint("StringFormatMatches")
         public void onLocationChanged(Location location) {
             longitudeNetwork = location.getLongitude();
             latitudeNetwork = location.getLatitude();
 
             getActivity().runOnUiThread(()-> {
-                longitudeValueNetwork.setText(String.format("%s", longitudeNetwork));
-                latitudeValueNetwork.setText(String.format("%s", latitudeNetwork));
+                longitudeValueNetwork.setText(String.format(getString(R.string.percent_s), longitudeNetwork));
+                latitudeValueNetwork.setText(String.format(getString(R.string.percent_s), latitudeNetwork));
                 Toast.makeText(getContext(), R.string.network_provider_update, Toast.LENGTH_SHORT).show();
             });
         }

@@ -10,7 +10,8 @@ public class AppDatabaseSingleton {
     public static AppDatabase getDatabase(Context context) {
         if(db == null) {
             db = Room.databaseBuilder(context,
-                    AppDatabase.class, "sample-database")
+                    AppDatabase.class, context.getString(R.string.sample_database))
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return db;

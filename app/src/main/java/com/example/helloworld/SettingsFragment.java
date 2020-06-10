@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,7 +71,7 @@ public class SettingsFragment extends Fragment {
 
         // test code ------------------------------------
 
-        String[] emails = {""};
+        String[] emails = {getString(R.string.empty_string)};
         if(b != null) {
             if(b.containsKey(Constants.KEY_EMAIL)) {
                 emails[0] = b.getString(Constants.KEY_EMAIL);
@@ -85,33 +86,24 @@ public class SettingsFragment extends Fragment {
             SettingsEntity settingsEntity = new SettingsEntity();
 
             settingsEntity.setEmail(emails[0]);
-
-            if(dailyRemind.getText().toString().equals("")) {
-                dailyRemind.setText(R.string.none);
-            }
             settingsEntity.setTime(dailyRemind.getText().toString());
-
-            if(maxDist.getText().toString().equals("")) {
-                maxDist.setText(R.string.none);
-            }
             settingsEntity.setMaxDist(maxDist.getText().toString());
-
-            if(genderPref.getText().toString().equals("")) {
-                genderPref.setText(R.string.none);
-            }
             settingsEntity.setGender(genderPref.getText().toString());
-
-            if(accountVis.getText().toString().equals("")) {
-                accountVis.setText(R.string.none);
-            }
             settingsEntity.setAcct_vis(accountVis.getText().toString());
-
-            if(ageRangePref.getText().toString().equals("")) {
-                ageRangePref.setText(R.string.none);
-            }
             settingsEntity.setAgeRange(ageRangePref.getText().toString());
 
+            settingsViewModel.insertAll(view.getContext(), settingsEntity);
             settingsViewModel.updateSettings(getContext(), settingsEntity);
+
+            dailyRemind.setText(settingsEntity.getTime());
+            maxDist.setText(settingsEntity.getMaxDist());
+            genderPref.setText(settingsEntity.getGender());
+            accountVis.setText(settingsEntity.getAcct_vis());
+            ageRangePref.setText(settingsEntity.getAgeRange());
+
+            Toast toast = Toast.makeText(view.getContext(), getString(R.string.settings_saved), Toast.LENGTH_SHORT);
+            toast.show();
+
         });
 
         // end test code --------------------------------
@@ -143,24 +135,24 @@ public class SettingsFragment extends Fragment {
 //        ageRangePref.setText(fakeSetting.getAgeRange());
 //    }
 
-    public void deleteSetting(View view) {
-
-        SettingsEntity currentSetting = new SettingsEntity();
-
-        currentSetting.setTime(this.dailyRemind.getText().toString());
-        currentSetting.setMaxDist(this.maxDist.getText().toString());
-        currentSetting.setGender(this.genderPref.getText().toString());
-        currentSetting.setAcct_vis(this.accountVis.getText().toString());
-        currentSetting.setAgeRange(this.ageRangePref.getText().toString());
-
-        settingsViewModel.deleteSettings(getContext(), currentSetting);
-
-        dailyRemind.setText("");
-        maxDist.setText("");
-        genderPref.setText("");
-        accountVis.setText("");
-        ageRangePref.setText("");
-    }
+//    public void deleteSetting(View view) {
+//
+//        SettingsEntity currentSetting = new SettingsEntity();
+//
+//        currentSetting.setTime(this.dailyRemind.getText().toString());
+//        currentSetting.setMaxDist(this.maxDist.getText().toString());
+//        currentSetting.setGender(this.genderPref.getText().toString());
+//        currentSetting.setAcct_vis(this.accountVis.getText().toString());
+//        currentSetting.setAgeRange(this.ageRangePref.getText().toString());
+//
+//        settingsViewModel.deleteSettings(getContext(), currentSetting);
+//
+//        dailyRemind.setText("");
+//        maxDist.setText("");
+//        genderPref.setText("");
+//        accountVis.setText("");
+//        ageRangePref.setText("");
+//    }
 
 }
 
