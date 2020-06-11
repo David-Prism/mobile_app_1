@@ -46,7 +46,7 @@ public class MatchesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view,
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.matches_fragment,
                 container, false);
 
         locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -57,6 +57,8 @@ public class MatchesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        toggleNetworkUpdates(recyclerView);
 
         return recyclerView;
     }
@@ -157,7 +159,8 @@ public class MatchesFragment extends Fragment {
     }
 
     private boolean isLocationEnabled() {
-        return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
     private void showAlert(Context context) {
@@ -176,20 +179,24 @@ public class MatchesFragment extends Fragment {
         if(!checkLocation()) {
             return;
         }
-        Button button = (Button) view;
-        if(button.getText().equals(getResources().getString(R.string.pause))) {
+//        Button button = (Button) view;
+//        if(button.getText().equals(getResources().getString(R.string.pause))) {
             locationManager.removeUpdates(locationListenerNetwork);
-            button.setText(R.string.resume);
-        }
-        else {
-            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-                    ActivityCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            button.setText(R.string.resume);
+//        }
+//        else {
+            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                    ActivityCompat.checkSelfPermission(getContext(),
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 60 * 1000, 10, locationListenerNetwork);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5 * 1000,
+                        10, locationListenerNetwork);
+
                 Toast.makeText(getContext(), getString(R.string.network_provider_started_running), Toast.LENGTH_LONG).show();
-                button.setText(R.string.pause);
+//                button.setText(R.string.pause);
             }
-        }
+//        }
     }
 
     private final LocationListener locationListenerNetwork = new LocationListener() {
@@ -214,5 +221,4 @@ public class MatchesFragment extends Fragment {
         @Override
         public void onProviderDisabled(String s) {}
     };
-
 }
