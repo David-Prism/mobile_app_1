@@ -13,6 +13,7 @@ import android.location.Location;
 
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,12 +47,12 @@ public class MatchesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.matches_fragment,
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view,
                 container, false);
 
         locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        longitudeValueNetwork = recyclerView.findViewById(R.id.longitudeValueNetwork);
-        latitudeValueNetwork = recyclerView.findViewById(R.id.latitudeValueNetwork);
+//        longitudeValueNetwork = recyclerView.findViewById(R.id.longitudeValueNetwork);
+//        latitudeValueNetwork = recyclerView.findViewById(R.id.latitudeValueNetwork);
 
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
@@ -59,6 +60,9 @@ public class MatchesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         toggleNetworkUpdates(recyclerView);
+
+        Log.i(TAG, "lat: " + latitudeNetwork);
+        Log.i(TAG, "long: " + longitudeNetwork);
 
         return recyclerView;
     }
@@ -206,8 +210,8 @@ public class MatchesFragment extends Fragment {
             latitudeNetwork = location.getLatitude();
 
             getActivity().runOnUiThread(()-> {
-                longitudeValueNetwork.setText(String.format(getString(R.string.percent_s), longitudeNetwork));
-                latitudeValueNetwork.setText(String.format(getString(R.string.percent_s), latitudeNetwork));
+//                longitudeValueNetwork.setText(String.format(getString(R.string.percent_s), longitudeNetwork));
+//                latitudeValueNetwork.setText(String.format(getString(R.string.percent_s), latitudeNetwork));
                 Toast.makeText(getContext(), R.string.network_provider_update, Toast.LENGTH_SHORT).show();
             });
         }
