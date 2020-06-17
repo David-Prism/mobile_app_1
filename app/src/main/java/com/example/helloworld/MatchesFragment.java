@@ -41,7 +41,14 @@ public class MatchesFragment extends Fragment {
 
     private LocationManager locationManager;
     private double longitudeNetwork, latitudeNetwork;
-    private TextView longitudeValueNetwork, latitudeValueNetwork;
+
+    int namesLength;
+    int picturesLength;
+
+    private ArrayList<String> mNames;
+    private ArrayList<String> mPictures;
+
+//    private final LocationListener locationListenerNetwork;
 
     @Nullable
     @Override
@@ -51,15 +58,13 @@ public class MatchesFragment extends Fragment {
                 container, false);
 
         locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-//        longitudeValueNetwork = recyclerView.findViewById(R.id.longitudeValueNetwork);
-//        latitudeValueNetwork = recyclerView.findViewById(R.id.latitudeValueNetwork);
 
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        toggleNetworkUpdates(recyclerView);
+//        toggleNetworkUpdates(recyclerView);
 
         Log.i(TAG, "lat: " + latitudeNetwork);
         Log.i(TAG, "long: " + longitudeNetwork);
@@ -96,45 +101,124 @@ public class MatchesFragment extends Fragment {
         }
     }
 
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         private int mLength;
-        private String[] mNames;
-        private String[] mPictures;
-        private String[] mUid;
-        private boolean[] mIsLiked;
-        private String[] mLat;
-        private String[] mLong;
+//        private ArrayList<String> mNames;
+//        private ArrayList<String> mPictures;
+        private ArrayList<String> mUid;
+        private ArrayList<Boolean> mIsLiked;
+        private ArrayList<String> mLat;
+        private ArrayList<String> mLong;
+
+        double latitudeNetwork;
+        double longitudeNetwork;
+
+        public int initMatchesTotal;
+        public int finalMatchesTotal;
+        double[] distMeters;
+        ArrayList<Double> distMiles;
+
+        boolean hasMatches = false;
+
+        int matchCount = 0;
 
         public ContentAdapter(Context context) {
             Resources resources = context.getResources();
-
-            MatchesViewModel viewModel = new MatchesViewModel();
-
-            viewModel.getMatches(
-                    (ArrayList<Match> matches) -> {
-                        int len = matches.size();
-
-                        mNames = new String[len];
-                        mPictures = new String[len];
-                        mUid = new String[len];
-                        mIsLiked = new boolean[len];
-                        mLat = new String[len];
-                        mLong = new String[len];
-                        mLength = matches.size();
-
-                        for(int i = 0; i < len; i++) {
-                            mNames[i] = matches.get(i).getName();
-                            mPictures[i] = matches.get(i).getImageUrl();
-                            mUid[i] = matches.get(i).getUid();
-                            mIsLiked[i] = matches.get(i).getIsLiked();
-                            mLat[i] = matches.get(i).getLat();
-                            mLong[i] = matches.get(i).getLongitude();
-                        }
-                        notifyDataSetChanged();
-                    }
-            );
+            toggleNetworkUpdates();
         }
+
+        private final LocationListener locationListenerNetwork = new LocationListener() {
+            @SuppressLint("StringFormatMatches")
+            public void onLocationChanged(Location location) {
+                longitudeNetwork = location.getLongitude();
+                latitudeNetwork = location.getLatitude();
+
+                MatchesViewModel viewModel = new MatchesViewModel();
+
+                viewModel.getMatches(
+                        (ArrayList<Match> matches) -> {
+
+                            mLength = matches.size();
+                            namesLength = matches.size();
+                            picturesLength = matches.size();
+
+                            mNames = new ArrayList<>();
+                            mPictures = new ArrayList<>();
+                            mUid = new ArrayList<>();
+                            mIsLiked = new ArrayList<>();
+                            mLat = new ArrayList<>();
+                            mLong = new ArrayList<>();
+
+                            for(int i = 0; i < matches.size(); i++) {
+                                mNames.add(matches.get(i).getName());
+                                mPictures.add(matches.get(i).getImageUrl());
+                                mUid.add(matches.get(i).getUid());
+                                mIsLiked.add(matches.get(i).getIsLiked());
+                                mLat.add(matches.get(i).getLat());
+                                mLong.add(matches.get(i).getLongitude());
+                            }
+                            notifyDataSetChanged();
+
+                            hasMatches = true;
+                            initMatchesTotal = mNames.size();
+
+                            if(hasMatches && initMatchesTotal == 6) {
+
+                                distMeters = new double[6];
+                                distMiles = new ArrayList<>();
+
+                                for(int i = 0; i < mNames.size(); i++) {
+
+                                    Location matchLocat = new Location("match");
+
+                                    double matchLat = Double.parseDouble(mLat.get(i));
+                                    double matchLong = Double.parseDouble(mLong.get(i));
+
+                                    matchLocat.setLatitude(matchLat);
+                                    matchLocat.setLongitude(matchLong);
+
+                                    Location userLocat = new Location("user");
+
+                                    userLocat.setLatitude(latitudeNetwork);
+                                    userLocat.setLongitude(longitudeNetwork);
+
+                                    distMeters[i] = userLocat.distanceTo(matchLocat);
+
+                                    double miles = (double) Math.abs(distMeters[i]) * 0.00062;
+
+                                    distMiles.add(i, miles);
+
+                                    if(distMiles.get(i) > 10.0) {
+                                        mNames.remove(i);
+                                        mPictures.remove(i);
+                                        mIsLiked.remove(i);
+                                        mUid.remove(i);
+                                        mLat.remove(i);
+                                        mLong.remove(i);
+
+                                        i--;
+                                        matchCount++;
+                                    }
+                                }
+                            }
+                        }
+                );
+
+                getActivity().runOnUiThread(()-> {
+                    Toast.makeText(getContext(), R.string.network_provider_update, Toast.LENGTH_SHORT).show();
+                });
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {}
+
+            @Override
+            public void onProviderEnabled(String s) {}
+
+            @Override
+            public void onProviderDisabled(String s) {}
+        };
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -143,17 +227,35 @@ public class MatchesFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.name.setText(mNames[position % mNames.length]);
-            Picasso.get().load(mPictures[position % mPictures.length]).into(holder.picture);
+            if(mNames.size() > 0) {
+                holder.name.setText(mNames.get(position % mNames.size()));
+                Picasso.get().load(mPictures.get(position % mPictures.size())).into(holder.picture);
+            }
         }
 
         @Override
         public int getItemCount() {
             return mLength;
         }
-    }
 
-    // Location services methods -------------------------------
+        public void toggleNetworkUpdates() {
+            if(!checkLocation()) {
+                return;
+            }
+            locationManager.removeUpdates(locationListenerNetwork);
+
+            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                    ActivityCompat.checkSelfPermission(getContext(),
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5 * 1000,
+                        10, locationListenerNetwork);
+
+                Toast.makeText(getContext(), getString(R.string.network_provider_started_running), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
     private boolean checkLocation() {
         if(!isLocationEnabled()) {
@@ -163,8 +265,7 @@ public class MatchesFragment extends Fragment {
     }
 
     private boolean isLocationEnabled() {
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
 
     private void showAlert(Context context) {
@@ -178,51 +279,4 @@ public class MatchesFragment extends Fragment {
                 .setNegativeButton(R.string.cancel, (paramDialogInterface, paramInt) -> {});
         dialog.show();
     }
-
-    public void toggleNetworkUpdates(View view) {
-        if(!checkLocation()) {
-            return;
-        }
-//        Button button = (Button) view;
-//        if(button.getText().equals(getResources().getString(R.string.pause))) {
-            locationManager.removeUpdates(locationListenerNetwork);
-//            button.setText(R.string.resume);
-//        }
-//        else {
-            if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-                    ActivityCompat.checkSelfPermission(getContext(),
-                            android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5 * 1000,
-                        10, locationListenerNetwork);
-
-                Toast.makeText(getContext(), getString(R.string.network_provider_started_running), Toast.LENGTH_LONG).show();
-//                button.setText(R.string.pause);
-            }
-//        }
-    }
-
-    private final LocationListener locationListenerNetwork = new LocationListener() {
-        @SuppressLint("StringFormatMatches")
-        public void onLocationChanged(Location location) {
-            longitudeNetwork = location.getLongitude();
-            latitudeNetwork = location.getLatitude();
-
-            getActivity().runOnUiThread(()-> {
-//                longitudeValueNetwork.setText(String.format(getString(R.string.percent_s), longitudeNetwork));
-//                latitudeValueNetwork.setText(String.format(getString(R.string.percent_s), latitudeNetwork));
-                Toast.makeText(getContext(), R.string.network_provider_update, Toast.LENGTH_SHORT).show();
-            });
-        }
-
-        @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {}
-
-        @Override
-        public void onProviderEnabled(String s) {}
-
-        @Override
-        public void onProviderDisabled(String s) {}
-    };
 }
